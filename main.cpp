@@ -70,11 +70,10 @@ public:
 };
 
 
+
 int main() {
 
-    Log log;
-    log.SetLevel(log.LogLevelError);
-    log.info("Hello");
+
 
     //std::cin.get();
 
