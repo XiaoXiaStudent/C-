@@ -25,20 +25,23 @@ public:
 };
 
 
-class Log {
+class LOG {
 
 public:
-    const int LogLevelWarning = 1;
-    const int LogLevelError = 0;
-    const int LogLevelInfo = 2;
+
+    enum Level {
+        LogLevelWarning = 0, LogLevelError, LogLevelInfo
+    };
+
+
 
 private:
-    int m_LogLevel;
+    int m_LogLevel = LogLevelInfo;
 
 public:
 
-    void SetLevel(const int i) {
-        m_LogLevel = i;
+    void SetLevel(Level level) {
+        m_LogLevel = level;
     }
 
     void warning(const char *string) {
@@ -57,7 +60,7 @@ public:
 
     }
 
-    void error(const char *string) {
+    void const error(const char *string) {
 
         if (m_LogLevel >= LogLevelError) {
             std::cout << "[ERROR] :" << string << std::endl;
@@ -72,7 +75,10 @@ public:
 
 
 int main() {
+    LOG log1;
 
+    log1.SetLevel(LOG::LogLevelInfo);
+    log1.warning("1111");
 
 
     //std::cin.get();
