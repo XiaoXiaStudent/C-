@@ -69,10 +69,49 @@ public:
 
     }
 
+};
+
+struct Entity {
+    static int x, y;
+
+    void print() {
+        std::cout << x << ", " << y << std::endl;
+    }
 
 };
 
+int Entity::x;
+int Entity::y;
 
+
+void Function() {
+    static int i = 0;
+    i++;
+    std::cout << i << std::endl;
+}
+
+class SingLeton {
+private:
+    static SingLeton *s_Instance;
+public:
+    static SingLeton &Get() {
+        SingLeton instance;
+        return instance;
+
+    }
+
+    void hello() {
+        std::cout << "hello" << std::endl;
+    }
+
+
+};
+
+enum Example : unsigned char {
+    A = 5, B=1, C
+};
+
+    Example value = B;
 
 int main() {
     LOG log1;
@@ -80,6 +119,11 @@ int main() {
     log1.SetLevel(LOG::LogLevelInfo);
     log1.warning("1111");
 
+    if (value == 1) {
+        // do something
+
+        std::cout << "value is 1" << std::endl;
+    }
 
     //std::cin.get();
 
