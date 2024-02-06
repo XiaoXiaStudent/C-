@@ -34,7 +34,6 @@ public:
     };
 
 
-
 private:
     int m_LogLevel = LogLevelInfo;
 
@@ -108,23 +107,16 @@ public:
 };
 
 enum Example : unsigned char {
-    A = 5, B=1, C
+    A = 5, B = 1, C
 };
 
-    Example value = B;
+Example value = B;
 
-int main() {
-    LOG log1;
+void Print(const std::string &value) {
 
-    log1.SetLevel(LOG::LogLevelInfo);
-    log1.warning("1111");
 
-    if (value == 1) {
-        // do something
-
-        std::cout << "value is 1" << std::endl;
-    }
-
-    //std::cin.get();
-
+    std::cout << value << std::endl;
 }
+
+
+
