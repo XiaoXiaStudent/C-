@@ -136,11 +136,13 @@ public:
         delete[] m_Buffer;
     }
 
+
     char &operator[](unsigned int index) {
         return m_Buffer[index];
     }
 
     friend std::ostream &operator<<(std::ostream &stream, const String &string);
+
 };
 
 std::ostream &operator<<(std::ostream &stream, const String &string) {
@@ -148,18 +150,19 @@ std::ostream &operator<<(std::ostream &stream, const String &string) {
     return stream;
 }
 
-void PrintString(const String& string) {
+void PrintString(const String &string) {
     String copy = string;
     std::cout << string << std::endl;
 }
 
+struct Vector3 {
+    float x, y, z;
+};
 
 int main() {
-    String string = "nihaoya";
-    String secend = string;
+    int a = (int ) &(((Vector3 *) nullptr)->z);
 
-    secend[2] = 'a';
+    std::cout << a << std::endl;
 
-    PrintString(string);
-    PrintString(secend);
+
 }
