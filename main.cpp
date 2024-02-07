@@ -70,41 +70,6 @@ public:
 
 };
 
-struct Entity {
-    static int x, y;
-
-    void print() {
-        std::cout << x << ", " << y << std::endl;
-    }
-
-};
-
-int Entity::x;
-int Entity::y;
-
-
-void Function() {
-    static int i = 0;
-    i++;
-    std::cout << i << std::endl;
-}
-
-class SingLeton {
-private:
-    static SingLeton *s_Instance;
-public:
-    static SingLeton &Get() {
-        SingLeton instance;
-        return instance;
-
-    }
-
-    void hello() {
-        std::cout << "hello" << std::endl;
-    }
-
-
-};
 
 enum Example : unsigned char {
     A = 5, B = 1, C
@@ -119,4 +84,42 @@ void Print(const std::string &value) {
 }
 
 
+int *createArray() {
+    //int array[50];
+    int *array = new int[50];
+    array[0] = 2;
+    *(array + 1) = 2;
+    return array;
+}
 
+void createArray(int *array) {
+
+}
+
+class Entity {
+
+
+public:
+
+    Entity() {
+        std::cout << "Created Entity!" << std::endl;
+    }
+
+    ~Entity() {
+        std::cout << "Destroyed Entity!" << std::endl;
+    }
+};
+
+int main() {
+    std::unique_ptr<Entity> entity = std::make_unique<Entity>();
+    std::shared_ptr<Entity> e = std::make_shared<Entity>();
+    std::weak_ptr<Entity> e2 = e;
+    std::cout << e.use_count() << std::endl;
+    {
+        std::shared_ptr<Entity> sharedEntity = e;
+        std::cout << e.use_count() << std::endl;
+    }
+    std::cout << e.use_count() << std::endl;
+    std::cin.get();
+    return 0;
+}
